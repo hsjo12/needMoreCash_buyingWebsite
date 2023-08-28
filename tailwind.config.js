@@ -9,6 +9,8 @@ module.exports = {
     extend: {
       fontFamily: {
         black_ops_one: ["var(--black_ops_one)"],
+        rammetto_One: ["var(--rammetto_One)"],
+        roboto_Slab: ["var(--roboto_Slab)"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

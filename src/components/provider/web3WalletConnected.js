@@ -8,7 +8,7 @@ import { Web3Modal } from "@web3modal/react";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { arbitrum, mainnet, polygon } from "wagmi/chains";
 const chains = [arbitrum, mainnet, polygon];
-
+const projectId = "bbb595edfc3299244917678b9896a47a";
 const { publicClient } = configureChains(chains, [w3mProvider({ projectId })]);
 const wagmiConfig = createConfig({
   autoConnect: true,
@@ -16,12 +16,14 @@ const wagmiConfig = createConfig({
   publicClient,
 });
 
-const WalletProvider = ({ children }) => {
+const ethereumClient = new EthereumClient(wagmiConfig, chains);
+const Web3WalletConnected = ({ children }) => {
   return (
     <>
       <WagmiConfig config={wagmiConfig}>{children}</WagmiConfig>
+      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
     </>
   );
 };
 
-export default WalletProvider;
+export default Web3WalletConnected;
