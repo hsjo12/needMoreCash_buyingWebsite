@@ -59,5 +59,16 @@ body {
   @apply xl:text-2xl;
 }
 .logoSize {
-  @apply xl:text-5xl;
+  @apply md:text-5xl xl:text-5xl;
+}
+.leftToRight {
+  animation: fromLeftToRight 1.2s linear;
+}
+@keyframes fromLeftToRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }
