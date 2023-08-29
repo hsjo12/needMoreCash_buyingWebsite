@@ -2,7 +2,7 @@
 import Link from "next/link";
 
 import ToastMSG from "../Utils/toastMessage";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ContextApI } from "../contextAPI/artAPI";
 import { useWeb3Modal } from "@web3modal/react";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
@@ -12,60 +12,83 @@ const Header = () => {
   const { setUser, user } = useContext(ContextApI);
   const { open, close } = useWeb3Modal();
   const { address, isConnected } = useAccount();
+  const [mounted, setMounted] = useState(false);
   const [isBarOn, setIsBarOn] = useState(false);
-  const connect = async () => {
-    try {
-      if (typeof window != undefined) {
-        if (window.klaytn) {
-          const accounts = await window.klaytn.enable();
-          setUser(accounts[0]);
-          console.log(accounts);
-        } else {
-          return ToastMSG("카이카스를 설치하세요.", "warn");
-        }
-      }
-    } catch (error) {}
-  };
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const openBars = () => {
     setIsBarOn(!isBarOn);
   };
 
   return (
-    <nav className=" overflow-hidden btnSize font-roboto_Slab xl:container  grid grid-cols-4 md:grid-cols-6 xl:grid-cols-8 mx-auto gap-4 border-b-2 text-[#f5f5f5]  border-[#726f6f] p-3">
-      <div className="flex items-center justify-start col-span-2 logoSize font-rammetto_One logoTextSize">
-        <Link href="./">
-          <p>ART</p>
-        </Link>
-      </div>
-      {/* This will be visible after xl */}
-      <div className="hidden w-full grid-cols-6 border border-red-400 xl:grid md:col-span-6 xl:col-span-6 ">
-        <button className="col-start-4 btn2">About</button>
-        <button className="btn2">Mint</button>
-        <button className="p-2 btn" onClick={() => open()}>
-          Connect
-        </button>
-      </div>
-      {/* This will be visible before xl */}
-      <div className="flex flex-col items-center justify-center col-start-6 mx-auto xl:hidden">
-        <button onClick={openBars}>
-          {/* {isBarOn ? null : <FaBars className="text-4xl " />} */}
-          {/* <FaBars className="text-4xl " /> */}
-          <div className="fixed top-0 right-0 w-screen h-screen  p-5 bg-[#04030852] border border-red-600">
-            <div className="flex flex-col items-center justify-start w-full border border-teal-200">
-              <button className="" onClick={openBars}>
-                <ImCancelCircle className="text-4xl" />
-              </button>
-              <button className="col-start-4 btn2">About</button>
-              <button className="btn2">Mint</button>
-              <button className="p-2 btn" onClick={() => open()}>
-                Connect
-              </button>
+    mounted && (
+      <nav className="btnSize font-roboto_Slab xl:container  grid grid-cols-4 md:grid-cols-6 xl:grid-cols-8 mx-auto gap-4 border-b-2 text-[#f5f5f5]  border-[#726f6f] p-3">
+        <div className="flex items-center justify-start col-span-2 logoSize font-rammetto_One logoTextSize">
+          <Link href="./">
+            <p>ART</p>
+          </Link>
+        </div>
+        {/* This will be visible after xl */}
+        <div className="hidden w-full grid-cols-6 xl:grid md:col-span-6 xl:col-span-6 ">
+          <button className="col-start-4">About</button>
+          <button>Mint</button>
+
+          {isConnected && address ? (
+            <button
+              className="flex flex-col items-center justify-center p-2 mx-auto btn"
+              onClick={() => open()}
+            >
+              {address.slice(0, 4)}...{address.slice(-4)}
+            </button>
+          ) : (
+            <button className="p-2 btn" onClick={() => close()}>
+              Connect
+            </button>
+          )}
+        </div>
+        {/* This will be visible before xl */}
+        <div className="flex flex-col items-center justify-center col-start-6 mx-auto xl:hidden">
+          {isBarOn ? null : (
+            <FaBars className="text-4xl cursor-pointer" onClick={openBars} />
+          )}
+
+          {isBarOn ? (
+            <div className="fixed top-0 right-0 w-screen h-screen  p-5 bg-[#04030852]  leftToRight">
+              <div className="flex flex-col items-end w-full h-full ">
+                <ImCancelCircle
+                  className="text-4xl cursor-pointer"
+                  onClick={openBars}
+                />
+                <div className="flex flex-col items-center justify-center w-full h-full ">
+                  {isConnected && address ? (
+                    <>
+                      <button
+                        className="flex flex-col items-center justify-center p-2 mx-auto navMenu btn"
+                        onClick={() => close()}
+                      >
+                        {address.slice(0, 4)}...{address.slice(-4)}
+                      </button>
+                      <button className="col-start-4 p-2 navMenu">About</button>
+                      <button className="p-2 navMenu">Mint</button>
+                    </>
+                  ) : (
+                    <>
+                      <button className="col-start-4 p-2 navMenu">About</button>
+                      <button className="p-2 navMenu">Mint</button>
+                      <button className="p-2 navMenu" onClick={() => open()}>
+                        Connect
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
-        </button>
-      </div>
-    </nav>
+          ) : null}
+        </div>
+      </nav>
+    )
   );
 };
 

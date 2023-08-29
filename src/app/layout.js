@@ -41,7 +41,10 @@ export default function RootLayout({ children }) {
         )}
       >
         <Provider>
-          <Header>{children}</Header>
+          <div className="banner">
+            <Header />
+            {children}
+          </div>
         </Provider>
       </body>
     </html>
