@@ -24,7 +24,7 @@ const Header = () => {
 
   return (
     mounted && (
-      <nav className="btnSize font-roboto_Slab xl:container  grid grid-cols-4 md:grid-cols-6 xl:grid-cols-8 mx-auto gap-4 border-b-2 text-[#f5f5f5]  border-[#726f6f] p-3">
+      <nav className="btnSize font-roboto_Slab xl:container grid grid-cols-4 md:grid-cols-6 xl:grid-cols-8 mx-auto gap-4 border-b-2 text-[#f5f5f5]  border-[#9ecaff] p-3 ">
         <div className="flex items-center justify-start col-span-2 logoSize font-rammetto_One logoTextSize">
           <Link href="./">
             <p>ART</p>
@@ -32,18 +32,18 @@ const Header = () => {
         </div>
         {/* This will be visible after xl */}
         <div className="hidden w-full grid-cols-6 xl:grid md:col-span-6 xl:col-span-6 ">
-          <button className="col-start-4">About</button>
-          <button>Mint</button>
+          <button className="col-start-4 navMenu">About</button>
+          <button className="navMenu">Mint</button>
 
           {isConnected && address ? (
             <button
-              className="flex flex-col items-center justify-center p-2 mx-auto btn"
+              className="flex flex-col items-center justify-center p-2 mx-auto navMenu"
               onClick={() => open()}
             >
               {address.slice(0, 4)}...{address.slice(-4)}
             </button>
           ) : (
-            <button className="p-2 btn" onClick={() => close()}>
+            <button className="p-2 navMenu" onClick={() => close()}>
               Connect
             </button>
           )}

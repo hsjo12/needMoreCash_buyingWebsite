@@ -1,8 +1,12 @@
 import Provider from "@/components/provider/provider";
 import "./globals.css";
-import { Inter } from "next/font/google";
 
-import { Black_Ops_One, Rammetto_One, Roboto_Slab } from "next/font/google";
+import {
+  Black_Ops_One,
+  Rammetto_One,
+  Roboto_Slab,
+  Cinzel,
+} from "next/font/google";
 import Header from "@/components/layout/header";
 export const metadata = {
   title: "Create Next App",
@@ -26,6 +30,12 @@ const roboto_Slab = Roboto_Slab({
   variable: "--roboto_Slab",
 });
 
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--cinzel",
+});
+
 const cls = (...classnames) => {
   return classnames.join(" ");
 };
@@ -37,7 +47,8 @@ export default function RootLayout({ children }) {
         className={cls(
           black_ops_one.variable,
           rammetto_One.variable,
-          roboto_Slab.variable
+          roboto_Slab.variable,
+          cinzel.variable
         )}
       >
         <Provider>

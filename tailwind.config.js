@@ -11,6 +11,7 @@ module.exports = {
         black_ops_one: ["var(--black_ops_one)"],
         rammetto_One: ["var(--rammetto_One)"],
         roboto_Slab: ["var(--roboto_Slab)"],
+        cinzel: ["var(--cinzel)"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

@@ -43,26 +43,30 @@ body {
 }
 
 .btn {
-  background-color: #726f6f;
-  color: whitesmoke;
+  background-color: whitesmoke;
+  color: rgb(59, 59, 59);
   transition: all 0.5s ease-out;
   @apply rounded-lg;
 }
 
 .btn:hover {
-  background-color: whitesmoke;
-  color: #726f6f;
+  background-color: transparent;
+  color: whitesmoke;
+  text-shadow: rgb(246, 255, 212) 1px 0 10px;
 }
 
 .navMenu {
-  @apply text-2xl md:text-3xl;
+  @apply text-2xl md:text-3xl xl:text-2xl;
 }
 
 .navMenu:hover {
-  text-shadow: rgb(97, 97, 97) 1px 0 10px;
-  color: #726f6f;
+  text-shadow: rgb(246, 255, 212) 1px 0 10px;
+  color: #273dff;
+  font-weight: 800;
 }
-
+.bannerText {
+  @apply xl:text-7xl;
+}
 .btnSize {
   @apply xl:text-2xl;
 }
