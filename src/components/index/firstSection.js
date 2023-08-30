@@ -5,9 +5,9 @@ const FirstSection = () => {
         Abstract ART
       </div>
       <div className="w-full text-center font-cinzel bannerText">By AI</div>
-      <div className="grid w-full grid-cols-5 pt-32">
-        <button className="col-start-2 btn ">ABOUT</button>
-        <button className="col-start-4 btn ">MINT</button>
+      <div className="grid w-full grid-cols-5 pt-32 border border-red-400">
+        <button className="col-start-2 btn">ABOUT</button>
+        <button className="col-start-4 btn">MINT</button>
       </div>
     </div>
   );
