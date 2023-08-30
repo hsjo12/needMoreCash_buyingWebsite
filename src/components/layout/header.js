@@ -24,7 +24,7 @@ const Header = () => {
 
   return (
     mounted && (
-      <nav className="btnSize font-roboto_Slab xl:container grid grid-cols-4 md:grid-cols-6 xl:grid-cols-8 mx-auto gap-4 border-b-2 text-[#f5f5f5]  border-[#9ecaff] p-3 ">
+      <nav className="btnSize font-roboto_Slab xl:container grid grid-cols-4 md:grid-cols-6 xl:grid-cols-8 mx-auto gap-4 border-b-2 text-[#f5f5f5]  border-[#f5f5f5] p-3 ">
         <div className="flex items-center justify-start col-span-2 logoSize font-rammetto_One logoTextSize">
           <Link href="./">
             <p>ART</p>
